@@ -39,6 +39,10 @@ pubnub.addListener({
         paragraph.appendChild(name);
         paragraph.appendChild(paragraphText);
         document.getElementById("thread").appendChild(paragraph);
+
+        var thread = document.getElementById("thread");
+        thread.scrollTop = thread.scrollHeight;
+
       },
       presence: function(presenceEvent) {
 
