@@ -1,6 +1,8 @@
 <html>
 <head>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="style.css" rel="stylesheet"/>
+
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -12,49 +14,14 @@
   <div class="container" id="thread">
 
   </div>
-  <div class="container">
+
+  <div class="container reply">
     <div class="form-group">
       <label for="exampleTextarea">Reply:</label>
-      <textarea class="form-control" id="message" rows="3"></textarea>
+      <textarea class="form-control" id="message" rows="3" onkeypress="return onKeyPress(event)"></textarea>
     </div>
-
     <button type="submit" class="btn btn-primary" onclick="send()">Submit</button>
   </div>
-  <script>
-  var pubnub = new PubNub({
-      publishKey : 'pub-c-cc4e3ba0-5e0c-40eb-802d-86a052ec5c18',
-      subscribeKey : 'sub-c-8ee1ab14-f0ec-11e6-99a6-02ee2ddab7fe'
-  });
-
-  function send() {
-    var publishConfig = {
-          channel : "chat",
-          message : document.getElementById("message").value
-    };
-
-    pubnub.publish(publishConfig, function(status, response) {
-
-    });
-  };
-
-  pubnub.addListener({
-        status: function(statusEvent) {
-
-        },
-        message: function(event) {
-          var node = document.createElement("p");                 // Create a <li> node
-          var textnode = document.createTextNode(event.message);         // Create a text node
-          node.appendChild(textnode);                              // Append the text to <li>
-          document.getElementById("thread").appendChild(node);     // Append <li> to <ul> with id="myList"
-        },
-        presence: function(presenceEvent) {
-            // handle presence
-        }
-  });
-
-  pubnub.subscribe({
-      channels: ['chat']
-  });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+.reply {
+  margin-bottom: 10px;
+  height: 150px
+}
+
+#thread {
+  height: calc(100% - 160px);
+  overflow: scroll;
+}
+
+#message {
+  resize: none;
+}
