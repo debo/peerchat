@@ -14,7 +14,9 @@ function onKeyPress(e)
 function send() {
   var publishConfig = {
         channel : "chat",
-        message : document.getElementById("message").value
+        message : {
+          name: document.getElementById("username").value,
+          message: document.getElementById("message").value }
   };
 
   document.getElementById("message").value = null;
@@ -29,10 +31,14 @@ pubnub.addListener({
 
       },
       message: function(event) {
-        var node = document.createElement("p");
-        var textnode = document.createTextNode(event.message);
-        node.appendChild(textnode);
-        document.getElementById("thread").appendChild(node);
+        var paragraph = document.createElement("p");
+        var paragraphText = document.createTextNode(event.message.message);
+        var name = document.createElement("b");
+        var nameText = document.createTextNode(event.message.name + ": ");
+        name.appendChild(nameText);
+        paragraph.appendChild(name);
+        paragraph.appendChild(paragraphText);
+        document.getElementById("thread").appendChild(paragraph);
       },
       presence: function(presenceEvent) {
 

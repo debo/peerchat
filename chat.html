@@ -17,8 +17,10 @@
 
   <div class="container reply">
     <div class="form-group">
-      <label for="exampleTextarea">Reply:</label>
-      <textarea class="form-control" id="message" rows="3" onkeypress="return onKeyPress(event)"></textarea>
+      <label for="usernameInput">Name: </label>
+      <input type="text" name="usernameInput" id="username" /><br/>
+      <label for="messageInput">Message: </label>
+      <textarea class="form-control" id="message" rows="3" onkeypress="return onKeyPress(event)" name="messageInput"></textarea>
     </div>
     <button type="submit" class="btn btn-primary" onclick="send()">Submit</button>
   </div>
