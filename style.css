@@ -5,7 +5,8 @@
 
 #thread {
   height: calc(100% - 160px);
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
 }
 
 #message {
