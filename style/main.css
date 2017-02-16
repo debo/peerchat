@@ -1,0 +1,21 @@
+.reply {
+  margin-bottom: 10px;
+  height: 180px
+}
+
+#thread {
+  height: calc(100% - 190px);
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+}
+
+#message {
+  resize: none;
+}
+
+.emoji {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin-bottom: -0.25em;
+}
