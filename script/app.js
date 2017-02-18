@@ -74,22 +74,24 @@ function send() {
 
 function renderMessage(event)
 {
+  var container = document.createElement("div");
   var paragraph = document.createElement("p");
   var paragraphText = document.createTextNode(event.message);
 
   if(id == event.id)
   {
-    paragraph.className += "sent";
+    container.className += "sent";
   }else{
     var name = document.createElement("b");
     var nameText = document.createTextNode(event.name + ": ");
     name.appendChild(nameText);
     paragraph.appendChild(name);
-    paragraph.className += "received";
+    container.className += "received";
   }
 
   paragraph.appendChild(paragraphText);
-  document.getElementById("thread").appendChild(paragraph);
+  container.appendChild(paragraph);
+  document.getElementById("thread").appendChild(container);
   var thread = document.getElementById("thread");
   thread.scrollTop = thread.scrollHeight;
 }
