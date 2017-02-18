@@ -12,13 +12,36 @@
 </head>
 <script src="http://underscorejs.org/underscore-min.js"></script>
 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.3.min.js"></script>
+<script src="script/sidebar.js"></script>
 
 <body>
 
-<class="row">
+  <div id="wrapper">
+        <div class="overlay"></div>
 
-    <div class="col-sm-10">
-    <div id="thread"></div>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                    <input type="text" name="usernameInput" id="username" placeholder="Name" />
+                    <div class="user-panel">
+                      <div class="panel">
+                        <div class="panel-heading">Online:</div>
+                        <div class="panel-body">
+                          <ul id="user-list"></ul>
+                        </div>
+                      </div>
+                    </div>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button>
+
+            <div id="thread"></div>
 
     <div class="reply">
         <div class="form-group">
@@ -112,26 +135,20 @@
                   <li class="emoji" onclick="insertEmoji(this)">💩</li>
               </ul>
             </div>
-            <textarea class="form-control" id="message" rows="3" onkeypress="return onKeyPress(event)" name="messageInput" placeholder="Type a message"></textarea>
+              <textarea class="form-control" id="message" rows="3"
+              onkeypress="return onKeyPress(event)" name="messageInput"
+               placeholder="Type a message"></textarea>
         </div>
-      </div>
-    </div>
+        <!-- /#page-content-wrapper -->
 
-    <div class="col-sm-2">
-      <div class="user-panel">
-        <input type="text" name="usernameInput" id="username" placeholder="Name" />
-        <div class="panel">
-          <div class="panel-heading">Online:</div>
-          <div class="panel-body">
-            <ul id="user-list">
-              <li>Virunee</li>
-              <li>Chris</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
-</div>
+    <!-- /#wrapper -->
+
+
+
+
+
+
     <script src="script/appController.js"></script>
     <script src="script/notificationController.js"></script>
     <script src="script/messageController.js"></script>
