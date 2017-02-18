@@ -14,14 +14,17 @@
 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.3.min.js"></script>
 
 <body>
+    <div class="container user-panel">
+      <input type="text" name="usernameInput" id="username" placeholder="Name" />
+      <ul id="user-list">
+      </ul>
+    </div>
     <div class="container" id="thread">
 
     </div>
 
     <div class="container reply">
         <div class="form-group">
-            <label for="usernameInput">Name: </label>
-            <input type="text" name="usernameInput" id="username" /><br/>
             <div class="emoji-keyboard">
               <ul class="emoji-list">
                   <li class="emoji" onclick="insertEmoji(this)">😀</li>
@@ -117,7 +120,10 @@
 
     </div>
 
-    <script src="script/app.js"></script>
+    <script src="script/appController.js"></script>
+    <script src="script/notificationController.js"></script>
+    <script src="script/messageController.js"></script>
+    <script src="script/userController.js"></script>
 </body>
 
 </html>

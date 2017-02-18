@@ -1,10 +1,10 @@
 .reply {
     margin-bottom: 10px;
-    height: 140px
+    height: 110px
 }
 
 #thread {
-    height: calc(100% - 160px);
+    height: calc(100% - 170px);
     overflow-y: scroll;
     overflow-wrap: break-word;
 }
@@ -66,4 +66,38 @@
     background-color: #e9ffcc;
     padding: 4px;
     border-radius: 5px;
+}
+
+.user-panel {
+  margin-top: 5px;
+  height: 30px
+}
+
+#user-list {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+#user-list li {
+  list-style: none;
+  margin-right: 10px;
+  font-size: 16pt;
+  display: inline;
+}
+
+#username {
+  float: right;
+}
+
+.online {
+  color: green;
+}
+
+.away {
+  color: orange;
+}
+
+.typing{
+  color: blue;
 }
