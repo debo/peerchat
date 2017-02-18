@@ -4,6 +4,10 @@
     bottom: 0;
 }
 
+.reply .form-group {
+  margin-bottom: 0;
+}
+
 #thread {
     height: 70%;
     overflow-y: scroll;
@@ -84,8 +88,6 @@
     background-color: #5DADE2;
     padding: 10px;
     margin-bottom: 15px;
-
-
 }
 
 .user-panel {
