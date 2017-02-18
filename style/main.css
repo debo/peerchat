@@ -1,11 +1,11 @@
 .reply {
-    height: 20%;
+    height: 15%;
     position: static;
     bottom: 0;
 }
 
 #thread {
-    height: 80%;
+    height: 70%;
     overflow-y: scroll;
     overflow-wrap: break-word;
     padding: 20px;
