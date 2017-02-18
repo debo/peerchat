@@ -2,6 +2,11 @@ var isActive = false;
 var id  = localStorage.getItem("id");
 var name = localStorage.getItem("name");
 
+var pubnub = new PubNub({
+    publishKey : 'pub-c-cc4e3ba0-5e0c-40eb-802d-86a052ec5c18',
+    subscribeKey : 'sub-c-8ee1ab14-f0ec-11e6-99a6-02ee2ddab7fe'
+});
+
 if(validValue(name))
 {
   document.getElementById("username").value = name;
@@ -12,11 +17,6 @@ if(!validValue(id))
   id = generateGuid();
   localStorage.setItem("id",id);
 }
-
-var pubnub = new PubNub({
-    publishKey : 'pub-c-cc4e3ba0-5e0c-40eb-802d-86a052ec5c18',
-    subscribeKey : 'sub-c-8ee1ab14-f0ec-11e6-99a6-02ee2ddab7fe'
-});
 
 function validValue(value)
 {
@@ -47,10 +47,17 @@ function onKeyPress(e)
   }
 }
 
+function insertEmoji(element)
+{
+  var message = document.getElementById("message").value;
+  message += element.innerText;
+  document.getElementById("message").value = message;
+}
+
 function send() {
   var name = document.getElementById("username").value;
   var publishConfig = {
-        channel : "chat",
+        channel : "chat.default",
         message : {
           id: id,
           name: name,
@@ -58,7 +65,7 @@ function send() {
         }
   };
 
-  document.getElementById("message").value = null;
+  document.getElementById("message").value = '';
   localStorage.setItem("name", name);
   pubnub.publish(publishConfig, function(status, response) {
 
@@ -82,8 +89,6 @@ function renderMessage(event)
   }
 
   paragraph.appendChild(paragraphText);
-  emojify.run(paragraph);
-
   document.getElementById("thread").appendChild(paragraph);
   var thread = document.getElementById("thread");
   thread.scrollTop = thread.scrollHeight;
