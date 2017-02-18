@@ -49,9 +49,11 @@ function onKeyPress(e)
 
 function insertEmoji(element)
 {
-  var message = document.getElementById("message").value;
+  var textArea = document.getElementById("message");
+  var message = textArea.value;
   message += element.innerText;
-  document.getElementById("message").value = message;
+  textArea.value = message;
+  textArea.focus();
 }
 
 function send() {
