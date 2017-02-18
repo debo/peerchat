@@ -1,15 +1,43 @@
 var isActive = false;
-var name  = localStorage.getItem("name");
+var id  = localStorage.getItem("id");
+var name = localStorage.getItem("name");
 
-if(name != "null")
+if(validValue(name))
 {
   document.getElementById("username").value = name;
+}
+
+if(!validValue(id))
+{
+  id = generateGuid();
+  localStorage.setItem("id",id);
 }
 
 var pubnub = new PubNub({
     publishKey : 'pub-c-cc4e3ba0-5e0c-40eb-802d-86a052ec5c18',
     subscribeKey : 'sub-c-8ee1ab14-f0ec-11e6-99a6-02ee2ddab7fe'
 });
+
+function validValue(value)
+{
+  if(value != null &&
+      value != "null" &&
+      value != undefined &&
+      value != "undefined")
+      {
+        return true;
+      }else {
+        return false;
+      }
+}
+
+function generateGuid()
+{
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+    });
+}
 
 function onKeyPress(e)
 {
@@ -24,8 +52,10 @@ function send() {
   var publishConfig = {
         channel : "chat",
         message : {
+          id: id,
           name: name,
-          message: document.getElementById("message").value }
+          message: document.getElementById("message").value
+        }
   };
 
   document.getElementById("message").value = null;
@@ -39,12 +69,21 @@ function renderMessage(event)
 {
   var paragraph = document.createElement("p");
   var paragraphText = document.createTextNode(event.message);
-  var name = document.createElement("b");
-  var nameText = document.createTextNode(event.name + ": ");
-  name.appendChild(nameText);
-  paragraph.appendChild(name);
+
+  if(id == event.id)
+  {
+    paragraph.className += "sent";
+  }else{
+    var name = document.createElement("b");
+    var nameText = document.createTextNode(event.name + ": ");
+    name.appendChild(nameText);
+    paragraph.appendChild(name);
+    paragraph.className += "received";
+  }
+
   paragraph.appendChild(paragraphText);
   emojify.run(paragraph);
+
   document.getElementById("thread").appendChild(paragraph);
   var thread = document.getElementById("thread");
   thread.scrollTop = thread.scrollHeight;
@@ -54,6 +93,8 @@ function renderNotification(event) {
   if(!isActive)
   {
     var notification = new Notification('Message from ' + event.name, {
+        icon: 'images/user_icon.png',
+        sound: 'sounds/alert.mp3',
         body: event.message
     });
 
@@ -65,7 +106,7 @@ function renderNotification(event) {
 
 pubnub.history(
     {
-        channel : 'chat',
+        channel : 'chat.default',
         count : 100
     },
     function(status, response){
@@ -89,7 +130,7 @@ pubnub.addListener({
 });
 
 pubnub.subscribe({
-    channels: ['chat']
+    channels: ['chat.default','user.status']
 });
 
 if (Notification.permission !== "granted")
@@ -105,4 +146,8 @@ window.onfocus = function () {
 
 window.onblur = function () {
   isActive = false;
+};
+
+window.onbeforeunload = function () {
+
 };

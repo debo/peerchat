@@ -1,10 +1,10 @@
 .reply {
   margin-bottom: 10px;
-  height: 180px
+  height: 100px
 }
 
 #thread {
-  height: calc(100% - 190px);
+  height: calc(100% - 110px);
   overflow-y: scroll;
   overflow-wrap: break-word;
 }
@@ -18,4 +18,12 @@
     height: 1.5em;
     display: inline-block;
     margin-bottom: -0.25em;
+}
+
+.sent {
+  text-align: right;
+}
+
+.received {
+  text-align: left;
 }
