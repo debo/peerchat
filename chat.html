@@ -14,16 +14,13 @@
 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.3.min.js"></script>
 
 <body>
-    <div class="container user-panel">
-      <input type="text" name="usernameInput" id="username" placeholder="Name" />
-      <ul id="user-list">
-      </ul>
-    </div>
-    <div class="container" id="thread">
 
-    </div>
+<class="row">
 
-    <div class="container reply">
+    <div class="col-sm-10">
+    <div id="thread"></div>
+
+    <div class="reply">
         <div class="form-group">
             <div class="emoji-keyboard">
               <ul class="emoji-list">
@@ -117,9 +114,24 @@
             </div>
             <textarea class="form-control" id="message" rows="3" onkeypress="return onKeyPress(event)" name="messageInput" placeholder="Type a message"></textarea>
         </div>
-
+      </div>
     </div>
 
+    <div class="col-sm-2">
+      <div class="user-panel">
+        <input type="text" name="usernameInput" id="username" placeholder="Name" />
+        <div class="panel">
+          <div class="panel-heading">Online:</div>
+          <div class="panel-body">
+            <ul id="user-list">
+              <li>Virunee</li>
+              <li>Chris</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
     <script src="script/appController.js"></script>
     <script src="script/notificationController.js"></script>
     <script src="script/messageController.js"></script>
